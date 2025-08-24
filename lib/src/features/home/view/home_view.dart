@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mvc_multi_screens/src/features/home/controller/home_cubit.dart';
-import 'package:mvc_multi_screens/src/features/home/view/counter_view_large.dart';
-import 'package:mvc_multi_screens/src/features/home/view/counter_view_medium.dart';
-import 'package:mvc_multi_screens/src/features/home/view/counter_view_small.dart';
+import 'package:mvc_multi_screens/src/features/home/view/home_view_large.dart';
+import 'package:mvc_multi_screens/src/features/home/view/home_view_medium.dart';
+import 'package:mvc_multi_screens/src/features/home/view/home_view_small.dart';
 
 import '../../../core/utils/screen_size_helper.dart';
 
-class CounterView extends StatelessWidget {
-  const CounterView({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +21,11 @@ class CounterView extends StatelessWidget {
         builder: (_) {
           switch (screenType) {
             case ScreenType.small:
-              return const CounterViewSmall();
+              return const HomeViewSmall();
             case ScreenType.medium:
-              return const CounterViewMedium();
+              return const HomeViewMedium();
             case ScreenType.large:
-              return const CounterViewLarge();
+              return const HomeViewLarge();
           }
         },
       ),

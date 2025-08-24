@@ -6,6 +6,11 @@ const titleText32 = TextStyle(
   fontWeight: FontWeight.bold,
   color: darkColor,
 );
+const titleText28 = TextStyle(
+  fontSize: 28,
+  fontWeight: FontWeight.bold,
+  color: darkColor,
+);
 const titleText22 = TextStyle(
   fontSize: 22,
   fontWeight: FontWeight.bold,
