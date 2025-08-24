@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvc_multi_screens/src/core/mocks/mocks.dart';
+import 'package:mvc_multi_screens/src/core/widgets/custom_app_bar.dart';
 import 'package:mvc_multi_screens/src/core/widgets/league_table/league_table.dart';
 
 class TableViewSmall extends StatelessWidget {
@@ -8,7 +9,7 @@ class TableViewSmall extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Counter Small')),
+      appBar: const CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: LeagueTable(
@@ -16,7 +17,7 @@ class TableViewSmall extends StatelessWidget {
           type: LeagueTableType.small,
           onTapClub: (club) {
             // Handle club tap
-            print('Tapped on club: ${club.name}');
+            Navigator.pushNamed(context, '/club-info', arguments: club);
           },
         ),
       ),

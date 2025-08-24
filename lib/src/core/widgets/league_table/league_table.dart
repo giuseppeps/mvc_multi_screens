@@ -12,6 +12,7 @@ class LeagueTable extends StatelessWidget {
   final LeagueTableType? type;
   final Function(ClubTable)? onTapClub;
   final Function()? onTapSeeAll;
+  final bool? showHeader;
 
   const LeagueTable({
     super.key,
@@ -19,6 +20,7 @@ class LeagueTable extends StatelessWidget {
     this.type = LeagueTableType.normal,
     this.onTapClub,
     this.onTapSeeAll,
+    this.showHeader = true,
   });
 
   @override
@@ -26,29 +28,31 @@ class LeagueTable extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InkWell(
-          onTap: onTapSeeAll,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Classificação ${clubs.first.league ?? ''}',
-                maxLines: type == LeagueTableType.small ? 2 : 1,
-                overflow:
-                    type == LeagueTableType.small
-                        ? TextOverflow.ellipsis
-                        : null,
-                style: titleText32,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Rodada ${clubs.first.matches} de ${clubs.first.matches}',
-                style: titleText14,
-              ),
-            ],
+        if (showHeader!) ...[
+          InkWell(
+            onTap: onTapSeeAll,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Classificação ${clubs.first.league ?? ''}',
+                  maxLines: type == LeagueTableType.small ? 2 : 1,
+                  overflow:
+                      type == LeagueTableType.small
+                          ? TextOverflow.ellipsis
+                          : null,
+                  style: titleText32,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'Rodada ${clubs.first.matches} de ${clubs.first.matches}',
+                  style: titleText14,
+                ),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 12),
+          const SizedBox(height: 12),
+        ],
         Container(
           decoration: BoxDecoration(
             border: Border.all(color: tableBorderColor, width: 1),

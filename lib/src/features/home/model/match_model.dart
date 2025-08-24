@@ -4,6 +4,7 @@ class MatchModel {
   final Club teamHome;
   final Club teamAway;
   final String league;
+  final String? stadium;
   final DateTime date;
   final int? teamHomeScore;
   final int? teamAwayScore;
@@ -12,6 +13,7 @@ class MatchModel {
     required this.teamHome,
     required this.teamAway,
     required this.league,
+    this.stadium,
     required this.date,
     this.teamHomeScore,
     this.teamAwayScore,

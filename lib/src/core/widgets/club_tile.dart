@@ -19,9 +19,12 @@ class ClubTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage(club.imageUrl ?? ''),
-        radius: _radius,
+      contentPadding: EdgeInsets.zero,
+      leading: Image.asset(
+        club.imageUrl ?? '',
+        fit: BoxFit.contain,
+        width: _radius * 2,
+        height: _radius * 2,
       ),
       title: Text(club.name, style: titleText22),
       subtitle: Text(
