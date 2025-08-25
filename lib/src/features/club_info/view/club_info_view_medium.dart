@@ -25,16 +25,13 @@ class ClubInfoViewMedium extends StatelessWidget {
             ClubTile(club: model.club),
             const SizedBox(height: 32),
             // Live Match
-            LiveMatchWidget(lastMatches: model.lastMatches),
+            LiveMatchWidget(lastMatches: model.matches),
             const SizedBox(height: 32),
             // Next and Last Matches + Table
-            NextLastMatchesWidget(
-              upcomingMatches: model.upcomingMatches,
-              lastMatches: model.lastMatches,
-            ),
+            NextLastMatchesWidget(matches: model.matches),
             const SizedBox(height: 32),
             // Table
-            ClubInfoTable(clubs: model.tableMock),
+            ClubInfoTable(clubs: model.clubTable),
             const SizedBox(height: 32),
             SquadWidget(squad: model.squad),
           ],

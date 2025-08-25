@@ -1,5 +1,5 @@
 class Club {
-  final String id;
+  final int id;
   final String name;
   final String? imageUrl;
   final int? position;
@@ -12,4 +12,8 @@ class Club {
     this.position,
     this.league,
   });
+
+  factory Club.empty() {
+    return Club(id: 0, name: '', imageUrl: null, position: null, league: null);
+  }
 }

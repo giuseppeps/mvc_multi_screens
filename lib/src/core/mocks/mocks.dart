@@ -1,11 +1,12 @@
 import 'package:mvc_multi_screens/src/core/entity/club_entity.dart';
 import 'package:mvc_multi_screens/src/core/entity/club_table_entity.dart';
 import 'package:mvc_multi_screens/src/core/utils/image_path.dart';
+import 'package:mvc_multi_screens/src/features/home/model/league_model.dart';
 import 'package:mvc_multi_screens/src/features/home/model/match_model.dart';
 
 List<ClubTable> clubsMock = [
   ClubTable(
-    id: '1',
+    id: 1,
     name: 'São Paulo',
     imageUrl: 'https://via.placeholder.com/150',
     position: 1,
@@ -20,7 +21,7 @@ List<ClubTable> clubsMock = [
     losses: 0,
   ),
   ClubTable(
-    id: '2',
+    id: 2,
     name: 'Palmeiras',
     imageUrl: 'https://via.placeholder.com/150',
     position: 2,
@@ -35,7 +36,7 @@ List<ClubTable> clubsMock = [
     losses: 1,
   ),
   ClubTable(
-    id: '3',
+    id: 3,
     name: 'Flamengo',
     imageUrl: 'https://via.placeholder.com/150',
     position: 3,
@@ -50,7 +51,7 @@ List<ClubTable> clubsMock = [
     losses: 1,
   ),
   ClubTable(
-    id: '4',
+    id: 4,
     name: 'Atlético Mineiro',
     imageUrl: 'https://via.placeholder.com/150',
     position: 4,
@@ -65,7 +66,7 @@ List<ClubTable> clubsMock = [
     losses: 1,
   ),
   ClubTable(
-    id: '5',
+    id: 5,
     name: 'Grêmio',
     imageUrl: 'https://via.placeholder.com/150',
     position: 5,
@@ -80,7 +81,7 @@ List<ClubTable> clubsMock = [
     losses: 3,
   ),
   ClubTable(
-    id: '6',
+    id: 6,
     name: 'Internacional',
     imageUrl: 'https://via.placeholder.com/150',
     position: 6,
@@ -95,7 +96,7 @@ List<ClubTable> clubsMock = [
     losses: 2,
   ),
   ClubTable(
-    id: '7',
+    id: 7,
     name: 'Corinthians',
     imageUrl: 'https://via.placeholder.com/150',
     position: 7,
@@ -110,7 +111,7 @@ List<ClubTable> clubsMock = [
     losses: 2,
   ),
   ClubTable(
-    id: '8',
+    id: 8,
     name: 'Fluminense',
     imageUrl: 'https://via.placeholder.com/150',
     position: 8,
@@ -125,7 +126,7 @@ List<ClubTable> clubsMock = [
     losses: 3,
   ),
   ClubTable(
-    id: '9',
+    id: 9,
     name: 'Botafogo',
     imageUrl: 'https://via.placeholder.com/150',
     position: 9,
@@ -140,7 +141,7 @@ List<ClubTable> clubsMock = [
     losses: 4,
   ),
   ClubTable(
-    id: '10',
+    id: 10,
     name: 'Vasco',
     imageUrl: 'https://via.placeholder.com/150',
     position: 10,
@@ -158,11 +159,11 @@ List<ClubTable> clubsMock = [
 
 final List<MatchModel> matchesMock = [
   MatchModel(
-    league: 'La Liga',
+    league: LeagueModel(id: 1, name: 'La Liga', imageUrl: ImagePath.laliga),
     date: DateTime.now().subtract(const Duration(minutes: 30)),
-    teamHome: Club(id: '1', name: 'PSG', imageUrl: ImagePath.laliga),
+    teamHome: Club(id: 1, name: 'PSG', imageUrl: ImagePath.laliga),
     teamAway: Club(
-      id: '2',
+      id: 2,
       name: 'Olympique Marseille',
       imageUrl: ImagePath.laliga,
     ),
@@ -170,83 +171,87 @@ final List<MatchModel> matchesMock = [
     teamAwayScore: 0,
   ),
   MatchModel(
-    league: 'La Liga',
+    league: LeagueModel(id: 1, name: 'La Liga', imageUrl: ImagePath.laliga),
     date: DateTime.now().add(const Duration(hours: 1)),
-    teamHome: Club(id: '3', name: 'FC Barcelona', imageUrl: ImagePath.laliga),
-    teamAway: Club(id: '4', name: 'Real Madrid', imageUrl: ImagePath.laliga),
+    teamHome: Club(id: 3, name: 'FC Barcelona', imageUrl: ImagePath.laliga),
+    teamAway: Club(id: 4, name: 'Real Madrid', imageUrl: ImagePath.laliga),
   ),
   MatchModel(
-    league: 'Premier League',
-    date: DateTime.now().add(const Duration(hours: 2)),
-    teamHome: Club(
-      id: '5',
-      name: 'Manchester City',
+    league: LeagueModel(
+      id: 2,
+      name: 'Premier League',
       imageUrl: ImagePath.premier,
     ),
-    teamAway: Club(id: '6', name: 'Liverpool', imageUrl: ImagePath.premier),
+    date: DateTime.now().add(const Duration(hours: 2)),
+    teamHome: Club(id: 5, name: 'Manchester City', imageUrl: ImagePath.premier),
+    teamAway: Club(id: 6, name: 'Liverpool', imageUrl: ImagePath.premier),
   ),
   MatchModel(
-    league: 'Serie A',
+    league: LeagueModel(id: 3, name: 'Serie A', imageUrl: ImagePath.ligue1),
     date: DateTime.now().subtract(const Duration(hours: 3)),
-    teamHome: Club(id: '7', name: 'AC Milan', imageUrl: ImagePath.ligue1),
-    teamAway: Club(id: '8', name: 'Inter Milan', imageUrl: ImagePath.ligue1),
+    teamHome: Club(id: 7, name: 'AC Milan', imageUrl: ImagePath.ligue1),
+    teamAway: Club(id: 8, name: 'Inter Milan', imageUrl: ImagePath.ligue1),
     teamHomeScore: 2,
     teamAwayScore: 1,
   ),
   MatchModel(
-    league: 'Bundesliga',
+    league: LeagueModel(
+      id: 4,
+      name: 'Bundesliga',
+      imageUrl: ImagePath.bundesliga,
+    ),
     date: DateTime.now().add(const Duration(hours: 3)),
     teamHome: Club(
-      id: '9',
+      id: 9,
       name: 'Bayern Munich',
       imageUrl: ImagePath.bundesliga,
     ),
     teamAway: Club(
-      id: '10',
+      id: 10,
       name: 'Borussia Dortmund',
       imageUrl: ImagePath.bundesliga,
     ),
   ),
   MatchModel(
-    league: 'Liga NOS',
+    league: LeagueModel(id: 5, name: 'Liga NOS', imageUrl: ImagePath.nos),
     date: DateTime.now().add(const Duration(hours: 4)),
-    teamHome: Club(id: '11', name: 'Benfica', imageUrl: ImagePath.nos),
-    teamAway: Club(id: '12', name: 'Porto', imageUrl: ImagePath.nos),
+    teamHome: Club(id: 11, name: 'Benfica', imageUrl: ImagePath.nos),
+    teamAway: Club(id: 12, name: 'Porto', imageUrl: ImagePath.nos),
   ),
   MatchModel(
-    league: 'La Liga',
+    league: LeagueModel(id: 1, name: 'La Liga', imageUrl: ImagePath.laliga),
     date: DateTime.now().subtract(const Duration(hours: 2)),
-    teamHome: Club(id: '13', name: 'Valencia', imageUrl: ImagePath.laliga),
-    teamAway: Club(id: '14', name: 'Sevilla', imageUrl: ImagePath.laliga),
+    teamHome: Club(id: 13, name: 'Valencia', imageUrl: ImagePath.laliga),
+    teamAway: Club(id: 14, name: 'Sevilla', imageUrl: ImagePath.laliga),
     teamHomeScore: 0,
     teamAwayScore: 0,
   ),
   MatchModel(
-    league: 'Premier League',
+    league: LeagueModel(
+      id: 2,
+      name: 'Premier League',
+      imageUrl: ImagePath.premier,
+    ),
     date: DateTime.now().add(const Duration(hours: 5)),
-    teamHome: Club(id: '15', name: 'Chelsea', imageUrl: ImagePath.premier),
-    teamAway: Club(id: '16', name: 'Arsenal', imageUrl: ImagePath.premier),
+    teamHome: Club(id: 15, name: 'Chelsea', imageUrl: ImagePath.premier),
+    teamAway: Club(id: 16, name: 'Arsenal', imageUrl: ImagePath.premier),
   ),
   MatchModel(
-    league: 'Bundesliga',
+    league: LeagueModel(
+      id: 4,
+      name: 'Bundesliga',
+      imageUrl: ImagePath.bundesliga,
+    ),
     date: DateTime.now().subtract(const Duration(hours: 1)),
-    teamHome: Club(
-      id: '17',
-      name: 'RB Leipzig',
-      imageUrl: ImagePath.bundesliga,
-    ),
-    teamAway: Club(
-      id: '18',
-      name: 'Schalke 04',
-      imageUrl: ImagePath.bundesliga,
-    ),
+    teamHome: Club(id: 17, name: 'RB Leipzig', imageUrl: ImagePath.bundesliga),
+    teamAway: Club(id: 18, name: 'Schalke 04', imageUrl: ImagePath.bundesliga),
     teamHomeScore: 2,
     teamAwayScore: 2,
   ),
   MatchModel(
-    league: 'Serie A',
+    league: LeagueModel(id: 3, name: 'Serie A', imageUrl: ImagePath.ligue1),
     date: DateTime.now().add(const Duration(hours: 6)),
-    teamHome: Club(id: '19', name: 'Juventus', imageUrl: ImagePath.ligue1),
-    teamAway: Club(id: '20', name: 'Roma', imageUrl: ImagePath.ligue1),
+    teamHome: Club(id: 19, name: 'Juventus', imageUrl: ImagePath.ligue1),
+    teamAway: Club(id: 20, name: 'Roma', imageUrl: ImagePath.ligue1),
   ),
 ];

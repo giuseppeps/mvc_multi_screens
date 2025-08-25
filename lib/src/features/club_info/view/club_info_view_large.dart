@@ -28,7 +28,7 @@ class ClubInfoViewLarge extends StatelessWidget {
                 ClubTile(club: model.club),
                 const SizedBox(height: 32),
                 // Live Match
-                LiveMatchWidget(lastMatches: model.lastMatches),
+                LiveMatchWidget(lastMatches: model.matches),
                 const SizedBox(height: 32),
                 // Next and Last Matches + Table
                 Row(
@@ -37,16 +37,13 @@ class ClubInfoViewLarge extends StatelessWidget {
                     // Next Matches
                     Expanded(
                       flex: 1,
-                      child: NextLastMatchesWidget(
-                        upcomingMatches: model.upcomingMatches,
-                        lastMatches: model.lastMatches,
-                      ),
+                      child: NextLastMatchesWidget(matches: model.matches),
                     ),
                     const SizedBox(width: 32),
                     // Table
                     Expanded(
                       flex: 1,
-                      child: ClubInfoTable(clubs: model.tableMock),
+                      child: ClubInfoTable(clubs: model.clubTable),
                     ),
                   ],
                 ),

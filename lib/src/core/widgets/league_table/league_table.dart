@@ -25,6 +25,10 @@ class LeagueTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ClubTable clubWithMostMatches = clubs.reduce(
+      (a, b) => a.matches > b.matches ? a : b,
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,7 +49,7 @@ class LeagueTable extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Rodada ${clubs.first.matches} de ${clubs.first.matches}',
+                  'Rodada ${clubWithMostMatches.matches} de ${clubs.length * 2 - 2}',
                   style: titleText14,
                 ),
               ],

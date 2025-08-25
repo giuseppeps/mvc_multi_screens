@@ -20,7 +20,8 @@ class ClubTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Image.asset(
+      minLeadingWidth: 12,
+      leading: Image.network(
         club.imageUrl ?? '',
         fit: BoxFit.contain,
         width: _radius * 2,

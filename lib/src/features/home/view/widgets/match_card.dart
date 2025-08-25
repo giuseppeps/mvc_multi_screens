@@ -20,7 +20,7 @@ class MatchCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(match.teamHome.imageUrl ?? '', width: 56, height: 56),
+          Image.network(match.teamHome.imageUrl ?? '', width: 56, height: 56),
           const SizedBox(width: 16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,11 +47,11 @@ class MatchCard extends StatelessWidget {
 
     switch (status) {
       case MatchStatus.live:
-        return '${match.league} | Ao vivo';
+        return '${match.league.name} | Ao vivo';
       case MatchStatus.finished:
-        return '${match.league} | Resultado Final: ${match.teamHomeScore ?? 0} - ${match.teamAwayScore ?? 0}';
+        return '${match.league.name} | Resultado Final: ${match.teamHomeScore ?? 0} - ${match.teamAwayScore ?? 0}';
       case MatchStatus.upcoming:
-        return '${match.league} | ${MatchUtils.formatHour(match.date)}';
+        return '${match.league.name} | ${MatchUtils.formatHour(match.date)}';
     }
   }
 }

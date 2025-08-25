@@ -1,27 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:mvc_multi_screens/src/core/mocks/mocks.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvc_multi_screens/src/core/theme/texts.dart';
-import 'package:mvc_multi_screens/src/core/utils/image_path.dart';
 import 'package:mvc_multi_screens/src/core/utils/match_utils.dart';
+import 'package:mvc_multi_screens/src/features/home/controller/home_cubit.dart';
+import 'package:mvc_multi_screens/src/features/home/model/match_model.dart';
 import 'package:mvc_multi_screens/src/features/home/view/widgets/match_card.dart';
 
-class MatchesWidget extends StatelessWidget {
-  const MatchesWidget({super.key});
+class MatchesWidget extends StatefulWidget {
+  final List<MatchModel> matches;
+
+  const MatchesWidget({super.key, required this.matches});
 
   @override
+  State<MatchesWidget> createState() => _MatchesWidgetState();
+}
+
+class _MatchesWidgetState extends State<MatchesWidget> {
+  @override
   Widget build(BuildContext context) {
+    final homeCubit = context.watch<HomeCubit>();
+    final selectedLeague = homeCubit.state.selectedLeague;
+
+    final filteredMatches =
+        selectedLeague == null
+            ? widget.matches
+            : widget.matches
+                .where((m) => m.league.id == selectedLeague.id)
+                .toList();
+
     final aoVivo =
-        matchesMock
+        filteredMatches
             .where((m) => MatchUtils.getStatus(m) == MatchStatus.live)
             .toList();
     final emBreve =
-        matchesMock
+        filteredMatches
             .where((m) => MatchUtils.getStatus(m) == MatchStatus.upcoming)
             .toList();
     final finalizadas =
-        matchesMock
+        filteredMatches
             .where((m) => MatchUtils.getStatus(m) == MatchStatus.finished)
             .toList();
+    final uniqueLeagues =
+        {
+          for (var match in widget.matches) match.league.id: match.league,
+        }.values.toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,14 +51,30 @@ class MatchesWidget extends StatelessWidget {
         const SizedBox(height: 16),
         const Text('Partidas de hoje', style: titleText28),
         const SizedBox(height: 12),
-        Row(
-          children: [
-            _leagueIcon(ImagePath.brasileirao),
-            _leagueIcon(ImagePath.premier),
-            _leagueIcon(ImagePath.nos),
-            _leagueIcon(ImagePath.laliga),
-            _leagueIcon(ImagePath.bundesliga),
-          ],
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children:
+                uniqueLeagues
+                    .map(
+                      (league) => GestureDetector(
+                        onTap: () {
+                          final cubit = context.read<HomeCubit>();
+                          if (selectedLeague?.id == league.id) {
+                            cubit.clearLeague();
+                          } else {
+                            cubit.selectLeague(league);
+                          }
+                          setState(() {});
+                        },
+                        child: _leagueIcon(
+                          league.imageUrl,
+                          isSelected: selectedLeague?.id == league.id,
+                        ),
+                      ),
+                    )
+                    .toList(),
+          ),
         ),
         const SizedBox(height: 30),
         _sectionTitle('Partidas ao vivo'),
@@ -51,10 +89,19 @@ class MatchesWidget extends StatelessWidget {
     );
   }
 
-  Widget _leagueIcon(String asset) {
+  Widget _leagueIcon(String asset, {bool isSelected = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Image.asset(asset, width: 50, height: 50),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isSelected ? Colors.blueAccent : Colors.transparent,
+            width: 3,
+          ),
+          shape: BoxShape.circle,
+        ),
+        child: Image.network(asset, width: 50, height: 50),
+      ),
     );
   }
 
